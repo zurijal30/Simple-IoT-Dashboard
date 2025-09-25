@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart IoT Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Smart IoT Dashboard</h1>
+  </header>
+
+  <main>
+    <section class="sensors">
+      <article class="sensor-box">
+        <h3>Humidity</h3>
+        <span id="humidityValue">{{ humidity }} %</span>
+      </article>
+      <article class="sensor-box">
+        <h3>Temperature</h3>
+        <span id="tempValue">{{ temperature }} °C</span>
+      </article>
+    </section>
+
+    <section class="led-section">
+      <h3>LED Control</h3>
+      <form method="POST" action="/">
+        <label class="switch">
+          <input type="checkbox" name="led" onchange="this.form.submit()" {% if led_status %}checked{% endif %}>
+          <span class="slider"></span>
+        </label>
+      </form>
+      <p id="ledStatus">LED is {% if led_status %}ON{% else %}OFF{% endif %}</p>
+    </section>
+  </main>
+</body>
+</html>
